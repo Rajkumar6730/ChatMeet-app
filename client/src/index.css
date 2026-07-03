@@ -1,0 +1,796 @@
+/* client/src/index.css */
+
+/* Font Import - MUST BE FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Layer */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #0B141A;
+    color: #E9EDEF;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0B141A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #202C33;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2A3942;
+  }
+}
+
+/* Components Layer */
+@layer components {
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .message-bubble-sent {
+    background-color: #005C4B;
+    color: #E9EDEF;
+  }
+
+  .message-bubble-received {
+    background-color: #202C33;
+    color: #E9EDEF;
+  }
+}
+
+/* Utilities Layer */
+@layer utilities {
+  /* Animations */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes typingDot {
+    0%, 80%, 100% {
+      transform: scale(0);
+      opacity: 0.4;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes notificationPulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.2s ease-out forwards;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.2s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.15s ease-out forwards;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
+  .animate-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 0.6s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  .animate-notification {
+    animation: notificationPulse 1s ease-in-out infinite;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.3s ease-out forwards;
+  }
+}
+
+/* Additional Custom Styles - These go AFTER all @layer directives */
+
+/* ============================================
+   SELECTION MODE
+   ============================================ */
+.selection-mode .message-bubble {
+  cursor: pointer;
+}
+
+.selection-mode .message-bubble:hover {
+  opacity: 0.8;
+}
+
+.message-selected {
+  outline: 2px solid #25D366;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   TYPING INDICATOR
+   ============================================ */
+.typing-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #AEBAC1;
+  margin: 0 2px;
+  animation: typingDot 1.4s infinite both;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.loading-spinner {
+  border: 3px solid #202C33;
+  border-top: 3px solid #25D366;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ============================================
+   MODAL OVERLAY
+   ============================================ */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   CONTEXT MENU
+   ============================================ */
+.context-menu {
+  background-color: #202C33;
+  border: 1px solid #2A3942;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  min-width: 200px;
+  padding: 4px 0;
+  z-index: 100;
+}
+
+.context-menu-item {
+  padding: 8px 16px;
+  color: #E9EDEF;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.context-menu-item:hover {
+  background-color: #2A3942;
+}
+
+.context-menu-item.danger {
+  color: #FF4757;
+}
+
+.context-menu-item.danger:hover {
+  background-color: rgba(255, 71, 87, 0.1);
+}
+
+/* ============================================
+   CHAT WINDOW
+   ============================================ */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #0B141A;
+}
+
+.chat-header {
+  background-color: #1F2C33;
+  border-bottom: 1px solid #2A3942;
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-input {
+  background-color: #2A3942;
+  border-top: 1px solid #2A3942;
+  padding: 8px 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ATTACHMENT MENU
+   ============================================ */
+.attachment-menu {
+  background-color: #202C33;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.attachment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.attachment-option:hover {
+  background-color: #2A3942;
+}
+
+/* ============================================
+   THEME SELECTOR
+   ============================================ */
+.theme-selector {
+  background-color: #202C33;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.theme-color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.theme-color-option:hover {
+  transform: scale(1.1);
+}
+
+.theme-color-option.active {
+  border-color: #25D366;
+}
+
+/* ============================================
+   SEARCH MESSAGES
+   ============================================ */
+.search-highlight {
+  background-color: rgba(37, 211, 102, 0.3);
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .chat-messages {
+    padding: 12px;
+  }
+  
+  .message-bubble {
+    max-width: 90% !important;
+  }
+}
+
+/* ============================================
+   DARK MODE VARIABLES
+   ============================================ */
+.dark-mode {
+  --bg-background: #0B141A;
+  --bg-card: #202C33;
+  --bg-border: #2A3942;
+  --text-primary: #E9EDEF;
+  --text-secondary: #AEBAC1;
+}
+
+/* ============================================
+   LIGHT MODE VARIABLES
+   ============================================ */
+.light-mode {
+  --bg-background: #F0F2F5;
+  --bg-card: #FFFFFF;
+  --bg-border: #E9EDEF;
+  --text-primary: #111B21;
+  --text-secondary: #667781;
+}
+
+/* ============================================
+   EXPORT STYLES
+   ============================================ */
+.export-container {
+  background-color: #FFFFFF;
+  color: #111B21;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.export-message {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 8px;
+}
+
+.export-message.own {
+  background-color: #25D366;
+  color: #FFFFFF;
+  text-align: right;
+}
+
+.export-message.other {
+  background-color: #E9EDEF;
+  color: #111B21;
+  text-align: left;
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+.toast-notification {
+  background-color: #202C33;
+  color: #E9EDEF;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-left: 4px solid #589571;
+  z-index: 1000;
+}
+
+.toast-notification.error {
+  border-left-color: #FF4757;
+}
+
+.toast-notification.success {
+  border-left-color: #25D366;
+}
+
+.toast-notification.warning {
+  border-left-color: #FFD93D;
+}
+
+/* ============================================
+   SELECTION TOOLBAR
+   ============================================ */
+.selection-toolbar {
+  background-color: #1F2C33;
+  border-bottom: 1px solid #2A3942;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.selection-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selection-toolbar button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: transparent;
+  color: #AEBAC1;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.selection-toolbar button:hover {
+  background-color: #2A3942;
+  color: #E9EDEF;
+}
+
+.selection-toolbar button.primary {
+  color: #25D366;
+}
+
+.selection-toolbar button.primary:hover {
+  background-color: rgba(37, 211, 102, 0.1);
+}
+
+.selection-toolbar button.danger {
+  color: #FF4757;
+}
+
+.selection-toolbar button.danger:hover {
+  background-color: rgba(255, 71, 87, 0.1);
+}
+
+/* ============================================
+   MESSAGE SELECTION CHECKBOX
+   ============================================ */
+.message-select-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #AEBAC1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.message-select-checkbox.checked {
+  background-color: #25D366;
+  border-color: #25D366;
+}
+
+.message-select-checkbox.checked svg {
+  display: block;
+}
+
+/* ============================================
+   FORWARD MODAL
+   ============================================ */
+.forward-modal {
+  background-color: #1F2C33;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.forward-modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #2A3942;
+}
+
+.forward-modal-body {
+  padding: 16px 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.forward-modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #2A3942;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ============================================
+   NEW: SIDEBAR STYLES
+   ============================================ */
+.sidebar-link {
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #2A3942;
+}
+
+.sidebar-link.active {
+  background-color: rgba(37, 211, 102, 0.1);
+  color: #25D366;
+}
+
+/* ============================================
+   NEW: HEADER STYLES
+   ============================================ */
+.header-button {
+  transition: all 0.2s ease;
+}
+
+.header-button:hover {
+  background-color: #2A3942;
+  color: #E9EDEF;
+}
+
+/* ============================================
+   NEW: STATUS INDICATOR
+   ============================================ */
+.status-online {
+  background-color: #25D366;
+}
+
+.status-away {
+  background-color: #FFD700;
+}
+
+.status-offline {
+  background-color: #AEBAC1;
+}
+
+/* ============================================
+   NEW: BLOCKED CHAT VIEW
+   ============================================ */
+.blocked-chat-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.blocked-chat-view .blocked-icon {
+  font-size: 64px;
+  color: #AEBAC1;
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   NEW: EMOJI PICKER
+   ============================================ */
+.emoji-picker-container {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  z-index: 50;
+}
+
+/* ============================================
+   NEW: LOADER SKELETON
+   ============================================ */
+.skeleton {
+  background: linear-gradient(90deg, #202C33 25%, #2A3942 50%, #202C33 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ============================================
+   NEW: CONTACT LIST
+   ============================================ */
+.contact-item {
+  transition: background-color 0.15s;
+}
+
+.contact-item:hover {
+  background-color: #2A3942;
+}
+
+.contact-item .contact-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ============================================
+   NEW: GROUP ONLINE MEMBERS
+   ============================================ */
+.group-online-members {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.group-online-members .member-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #0B141A;
+}
+
+.group-online-members .member-avatar:not(:first-child) {
+  margin-left: -8px;
+}
+
+/* ============================================
+   NEW: NOTIFICATION DROPDOWN
+   ============================================ */
+.notification-dropdown {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  transition: background-color 0.15s;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background-color: #2A3942;
+}
+
+.notification-item.unread {
+  background-color: rgba(37, 211, 102, 0.05);
+}
+
+/* ============================================
+   NEW: MESSAGE REACTIONS
+   ============================================ */
+.message-reactions {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.message-reaction {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: #2A3942;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.message-reaction:hover {
+  background-color: #3A4A52;
+}
+
+.message-reaction .reaction-count {
+  color: #AEBAC1;
+  font-size: 10px;
+}

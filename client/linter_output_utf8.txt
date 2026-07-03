@@ -1,0 +1,606 @@
+﻿
+  ! eslint(no-unused-vars): Identifier 'FiBell' is imported but never used.
+   ,-[src/pages/SettingsPage.jsx:4:25]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiMoon, FiSun, FiBell, FiLock, FiUser, FiLogOut, FiSave, FiCheck } from 'react-icons/fi';
+   :                         ^^^|^^
+   :                            `-- 'FiBell' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiLock' is imported but never used.
+   ,-[src/pages/SettingsPage.jsx:4:33]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiMoon, FiSun, FiBell, FiLock, FiUser, FiLogOut, FiSave, FiCheck } from 'react-icons/fi';
+   :                                 ^^^|^^
+   :                                    `-- 'FiLock' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiUser' is imported but never used.
+   ,-[src/pages/SettingsPage.jsx:4:41]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiMoon, FiSun, FiBell, FiLock, FiUser, FiLogOut, FiSave, FiCheck } from 'react-icons/fi';
+   :                                         ^^^|^^
+   :                                            `-- 'FiUser' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Parameter 'type' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/services/chatService.js:711:26]
+ 710 | 
+ 711 |   async uploadFile(file, type = 'file') {
+     :                          ^^|^
+     :                            `-- 'type' is declared here
+ 712 |     try {
+     `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Variable 'getChatType' is declared but never used. Unused variables should start with a '_'.
+     ,-[src/components/chat/ForwardModal.jsx:131:9]
+ 130 |   // ---- Get chat type (NEW FEATURE) ----
+ 131 |   const getChatType = (chat) => {
+     :         ^^^^^|^^^^^
+     :              `-- 'getChatType' is declared here
+ 132 |     return chat.isGroup ? <FiUsers className="text-text-secondary" size={16} /> : <FiUser className="text-text-secondary" size={16} />;
+     `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Parameter 'err' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/components/chat/ForwardModal.jsx:221:28]
+ 220 |                     .then(data => setChats(data))
+ 221 |                     .catch(err => setError('Failed to load chats'))
+     :                            ^|^
+     :                             `-- 'err' is declared here
+ 222 |                     .finally(() => setLoading(false));
+     `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Identifier 'FiCamera' is imported but never used.
+   ,-[src/components/chat/CameraModal.jsx:2:15]
+ 1 | import React, { useState, useRef, useEffect } from 'react';
+ 2 | import { FiX, FiCamera, FiRefreshCw } from 'react-icons/fi';
+   :               ^^^^|^^^
+   :                   `-- 'FiCamera' is imported here
+ 3 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Catch parameter 'playErr' is caught but never used.
+    ,-[src/components/chat/CameraModal.jsx:33:18]
+ 32 |           await videoRef.current.play();
+ 33 |         } catch (playErr) {
+    :                  ^^^|^^^
+    :                     `-- 'playErr' is declared here
+ 34 |           // ignore
+    `----
+  help: Consider handling this error.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'startCamera', and 'stopCamera'
+    ,-[src/components/chat/CameraModal.jsx:20:6]
+ 13 |     if (isOpen) {
+ 14 |       startCamera();
+    :       ^^^^^^^^^^^
+ 15 |     } else {
+ 16 |       stopCamera();
+    :       ^^^^^^^^^^
+ 17 |       setCapturedImage(null);
+ 18 |     }
+ 19 |     return () => stopCamera();
+ 20 |   }, [isOpen, facingMode]);
+    :      ^^^^^^^^^^^^^^^^^^^^
+ 21 | 
+    `----
+  help: Either include it or remove the dependency array.
+
+  ! eslint(no-unused-vars): Identifier 'FiUserX' is imported but never used.
+   ,-[src/components/chat/BlockedChatView.jsx:3:18]
+ 2 | import React from 'react';
+ 3 | import { FiLock, FiUserX } from 'react-icons/fi';
+   :                  ^^^|^^^
+   :                     `-- 'FiUserX' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiChevronLeft' is imported but never used.
+    ,-[src/components/chat/MessageSelectionToolbar.jsx:9:3]
+  8 |   FiX,
+  9 |   FiChevronLeft,
+    :   ^^^^^^|^^^^^^
+    :         `-- 'FiChevronLeft' is imported here
+ 10 |   FiInfo,
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiUser' is imported but never used.
+   ,-[src/pages/ProfilePage.jsx:4:10]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiUser, FiMail, FiPhone, FiEdit2, FiCamera, FiSave, FiX } from 'react-icons/fi';
+   :          ^^^|^^
+   :             `-- 'FiUser' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiMail' is imported but never used.
+   ,-[src/pages/ProfilePage.jsx:4:18]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiUser, FiMail, FiPhone, FiEdit2, FiCamera, FiSave, FiX } from 'react-icons/fi';
+   :                  ^^^|^^
+   :                     `-- 'FiMail' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiPhone' is imported but never used.
+   ,-[src/pages/ProfilePage.jsx:4:26]
+ 3 | import { chatService } from '../services/chatService';
+ 4 | import { FiUser, FiMail, FiPhone, FiEdit2, FiCamera, FiSave, FiX } from 'react-icons/fi';
+   :                          ^^^|^^^
+   :                             `-- 'FiPhone' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'user' is declared but never used. Unused variables should start with a '_'.
+   ,-[src/components/modals/NewChatModal.jsx:7:11]
+ 6 | const NewChatModal = ({ isOpen, onClose, onChatCreated }) => {
+ 7 |   const { user } = useAuth();
+   :           ^^|^
+   :             `-- 'user' is declared here
+ 8 |   const [searchQuery, setSearchQuery] = useState('');
+   `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'selectedUser' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/ContactsPage.jsx:20:10]
+ 19 |   const [searchResults, setSearchResults] = useState([]);
+ 20 |   const [selectedUser, setSelectedUser] = useState(null);
+    :          ^^^^^^|^^^^^
+    :                `-- 'selectedUser' is declared here
+ 21 |   const [modalState, setModalState] = useState({
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'setSelectedUser' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/ContactsPage.jsx:20:24]
+ 19 |   const [searchResults, setSearchResults] = useState([]);
+ 20 |   const [selectedUser, setSelectedUser] = useState(null);
+    :                        ^^^^^^^|^^^^^^^
+    :                               `-- 'setSelectedUser' is declared here
+ 21 |   const [modalState, setModalState] = useState({
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Parameter 'isBlockedBy' is declared but never used. Unused parameters should start with a '_'.
+    ,-[src/components/chat/ChatMenu.jsx:20:3]
+ 19 |   isBlocked = false,
+ 20 |   isBlockedBy = false,
+    :   ^^^^^|^^^^^
+    :        `-- 'isBlockedBy' is declared here
+ 21 |   onPin,
+    `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Variable 'response' is declared but never used. Unused variables should start with a '_'.
+     ,-[src/context/AuthContext.jsx:267:13]
+ 266 |       setError(null);
+ 267 |       const response = await authService.verifyEmail(token);
+     :             ^^^^|^^^
+     :                 `-- 'response' is declared here
+ 268 |       updateUser({ isVerified: true });
+     `----
+  help: Consider removing this declaration.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+   ,-[src/context/AuthContext.jsx:8:14]
+ 7 | 
+ 8 | export const useAuth = () => {
+   :              ^^^^^^^
+ 9 |   const context = useContext(AuthContext);
+   `----
+
+  ! eslint(no-unused-vars): Identifier 'FiUser' is imported but never used.
+   ,-[src/components/group/CreateGroupModal.jsx:2:27]
+ 1 | import React, { useState, useEffect } from 'react';
+ 2 | import { FiX, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
+   :                           ^^^|^^
+   :                              `-- 'FiUser' is imported here
+ 3 | import { chatService } from '../../services/chatService';
+   `----
+  help: Consider removing this import.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'searchUsers'
+    ,-[src/components/group/CreateGroupModal.jsx:26:6]
+ 19 |       const delay = setTimeout(() => {
+ 20 |         searchUsers(searchQuery);
+    :         ^^^^^|^^^^^
+    :              `-- useEffect uses `searchUsers` here
+ 21 |       }, 300);
+ 22 |       return () => clearTimeout(delay);
+ 23 |     } else {
+ 24 |       setSearchResults([]);
+ 25 |     }
+ 26 |   }, [searchQuery]);
+    :      ^^^^^^^^^^^^^
+ 27 | 
+    `----
+  help: Either include it or remove the dependency array.
+
+  ! eslint(no-unused-vars): Variable 'navigate' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/GroupsPage.jsx:16:9]
+ 15 | const GroupsPage = () => {
+ 16 |   const navigate = useNavigate();
+    :         ^^^^|^^^
+    :             `-- 'navigate' is declared here
+ 17 |   const { user } = useAuth();
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'user' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/GroupsPage.jsx:17:11]
+ 16 |   const navigate = useNavigate();
+ 17 |   const { user } = useAuth();
+    :           ^^|^
+    :             `-- 'user' is declared here
+ 18 |   const { isConnected, on, off, emit } = useSocket();
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Parameter 'data' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/pages/GroupsPage.jsx:116:33]
+ 115 |     // Handle group created
+ 116 |     const handleGroupCreated = (data) => {
+     :                                 ^^|^
+     :                                   `-- 'data' is declared here
+ 117 |       fetchGroups();
+     `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Parameter 'data' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/pages/GroupsPage.jsx:121:33]
+ 120 |     // Handle group updated
+ 121 |     const handleGroupUpdated = (data) => {
+     :                                 ^^|^
+     :                                   `-- 'data' is declared here
+ 122 |       fetchGroups();
+     `----
+  help: Consider removing this parameter.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'fetchGroups'
+    ,-[src/pages/GroupsPage.jsx:53:6]
+ 51 |   useEffect(() => {
+ 52 |     fetchGroups();
+    :     ^^^^^|^^^^^
+    :          `-- useEffect uses `fetchGroups` here
+ 53 |   }, []);
+    :      ^^
+ 54 | 
+    `----
+  help: Either include it or remove the dependency array.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'fetchGroups'
+     ,-[src/pages/GroupsPage.jsx:150:6]
+ 116 |     const handleGroupCreated = (data) => {
+ 117 |       fetchGroups();
+     :       ^^^^^|^^^^^
+     :            `-- useEffect uses `fetchGroups` here
+ 118 |     };
+ 119 | 
+ 120 |     // Handle group updated
+ 121 |     const handleGroupUpdated = (data) => {
+ 122 |       fetchGroups();
+ 123 |     };
+ 124 | 
+ 125 |     // Handle group deleted
+ 126 |     const handleGroupDeleted = (data) => {
+ 127 |       setGroups(prev => prev.filter(group => group.id !== data.groupId));
+ 128 |       if (selectedGroup?.id === data.groupId) {
+ 129 |         setSelectedGroup(null);
+ 130 |       }
+ 131 |     };
+ 132 | 
+ 133 |     on('groupOnlineMembers', handleGroupOnlineMembers);
+ 134 |     on('groupTyping', handleGroupTyping);
+ 135 |     on('groupStopTyping', handleGroupStopTyping);
+ 136 |     on('newMessage', handleNewMessage);
+ 137 |     on('groupCreated', handleGroupCreated);
+ 138 |     on('groupUpdated', handleGroupUpdated);
+ 139 |     on('groupDeleted', handleGroupDeleted);
+ 140 | 
+ 141 |     return () => {
+ 142 |       off('groupOnlineMembers', handleGroupOnlineMembers);
+ 143 |       off('groupTyping', handleGroupTyping);
+ 144 |       off('groupStopTyping', handleGroupStopTyping);
+ 145 |       off('newMessage', handleNewMessage);
+ 146 |       off('groupCreated', handleGroupCreated);
+ 147 |       off('groupUpdated', handleGroupUpdated);
+ 148 |       off('groupDeleted', handleGroupDeleted);
+ 149 |     };
+ 150 |   }, [isConnected, on, off, selectedGroup]);
+     :      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 151 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+  ! eslint(no-unused-vars): Identifier 'FiBell' is imported but never used.
+    ,-[src/components/layout/Sidebar.jsx:14:3]
+ 13 |   FiSearch,
+ 14 |   FiBell,
+    :   ^^^|^^
+    :      `-- 'FiBell' is imported here
+ 15 |   FiStar,
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiChevronUp' is imported but never used.
+    ,-[src/components/layout/Sidebar.jsx:18:3]
+ 17 |   FiChevronDown,
+ 18 |   FiChevronUp
+    :   ^^^^^|^^^^^
+    :        `-- 'FiChevronUp' is imported here
+ 19 | } from 'react-icons/fi';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'location' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/layout/Sidebar.jsx:26:9]
+ 25 |   const navigate = useNavigate();
+ 26 |   const location = useLocation();
+    :         ^^^^|^^^
+    :             `-- 'location' is declared here
+ 27 |   
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'notificationCount' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/layout/Sidebar.jsx:31:10]
+ 30 |   const [unreadCount, setUnreadCount] = useState(0);
+ 31 |   const [notificationCount, setNotificationCount] = useState(0);
+    :          ^^^^^^^^|^^^^^^^^
+    :                  `-- 'notificationCount' is declared here
+ 32 |   const [isCollapsed, setIsCollapsed] = useState(false);
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'navigate' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/group/GroupChat.jsx:12:9]
+ 11 | const GroupChat = ({ group, onBack, onGroupUpdate }) => {
+ 12 |   const navigate = useNavigate();
+    :         ^^^^|^^^
+    :             `-- 'navigate' is declared here
+ 13 |   const { user } = useAuth();
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'fetchMessages' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/group/GroupChat.jsx:21:5]
+ 20 |     markAsRead,
+ 21 |     fetchMessages
+    :     ^^^^^^|^^^^^^
+    :           `-- 'fetchMessages' is declared here
+ 22 |   } = useChat(null, group?.id); // We'll need to modify useChat to handle groupId
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'socket' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/hooks/useChat.js:9:11]
+  8 |   const { user } = useAuth();
+  9 |   const { socket, emit, on, off, isConnected } = useSocket();
+    :           ^^^|^^
+    :              `-- 'socket' is declared here
+ 10 |   const [messages, setMessages] = useState([]);
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Identifier 'FiUser' is imported but never used.
+   ,-[src/components/group/GroupCard.jsx:4:19]
+ 3 | import { formatDistanceToNow } from 'date-fns';
+ 4 | import { FiUsers, FiUser, FiCheck, FiClock } from 'react-icons/fi';
+   :                   ^^^|^^
+   :                      `-- 'FiUser' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiClock' is imported but never used.
+   ,-[src/components/group/GroupCard.jsx:4:36]
+ 3 | import { formatDistanceToNow } from 'date-fns';
+ 4 | import { FiUsers, FiUser, FiCheck, FiClock } from 'react-icons/fi';
+   :                                    ^^^|^^^
+   :                                       `-- 'FiClock' is imported here
+ 5 | 
+   `----
+  help: Consider removing this import.
+
+  x Duplicated export 'useMessageSelection'
+   ,-[src/hooks/useMessageSelection.js:3:10]
+ 2 | import { useMessageSelection } from '../context/MessageSelectionContext';
+ 3 | export { useMessageSelection };
+   :          ^^^^^^^^^|^^^^^^^^^
+   :                   `-- Export has already been declared here
+ 4 | export const useMessageSelection = () => {
+   :              ^^^^^^^^^|^^^^^^^^^
+   :                       `-- It cannot be redeclared here
+ 5 |   return useMessageSelection();
+   `----
+
+  ! eslint(no-unused-vars): Identifier 'useMessageSelection' is imported but never used.
+   ,-[src/components/chat/MessageContextMenu.jsx:3:10]
+ 2 | import React, { useEffect, useRef } from 'react';
+ 3 | import { useMessageSelection } from '../../context/MessageSelectionContext';
+   :          ^^^^^^^^^|^^^^^^^^^
+   :                   `-- 'useMessageSelection' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+   ,-[src/context/MessageSelectionContext.jsx:6:14]
+ 5 | 
+ 6 | export const useMessageSelection = () => {
+   :              ^^^^^^^^^^^^^^^^^^^
+ 7 |   const context = useContext(MessageSelectionContext);
+   `----
+
+  ! eslint(no-unused-vars): Identifier 'FiCheckCircle' is imported but never used.
+    ,-[src/components/chat/MessageBubble.jsx:11:3]
+ 10 |   FiStar,
+ 11 |   FiCheckCircle,
+    :   ^^^^^^|^^^^^^
+    :         `-- 'FiCheckCircle' is imported here
+ 12 |   FiCircle,
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiCircle' is imported but never used.
+    ,-[src/components/chat/MessageBubble.jsx:12:3]
+ 11 |   FiCheckCircle,
+ 12 |   FiCircle,
+    :   ^^^^|^^^
+    :       `-- 'FiCircle' is imported here
+ 13 |   FiImage,
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FiImage' is imported but never used.
+    ,-[src/components/chat/MessageBubble.jsx:13:3]
+ 12 |   FiCircle,
+ 13 |   FiImage,
+    :   ^^^|^^^
+    :      `-- 'FiImage' is imported here
+ 14 |   FiClock
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'showTime' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/chat/MessageBubble.jsx:31:10]
+ 30 | }) => {
+ 31 |   const [showTime, setShowTime] = useState(false);
+    :          ^^^^|^^^
+    :              `-- 'showTime' is declared here
+ 32 |   const [showDeleteOptions, setShowDeleteOptions] = useState(false);
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'isBlocking' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/components/chat/ChatWindow.jsx:73:10]
+ 72 |   const [isBlocked, setIsBlocked] = useState(false);
+ 73 |   const [isBlocking, setIsBlocking] = useState(false);
+    :          ^^^^^|^^^^
+    :               `-- 'isBlocking' is declared here
+ 74 |   const [blockStatus, setBlockStatus] = useState({
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Identifier 'FiImage' is imported but never used.
+   ,-[src/components/chat/ThemeSelector.jsx:3:44]
+ 2 | import React, { useState, useRef, useEffect } from 'react';
+ 3 | import { FiX, FiCheck, FiUpload, FiTrash2, FiImage, FiMoon, FiSun } from 'react-icons/fi';
+   :                                            ^^^|^^^
+   :                                               `-- 'FiImage' is imported here
+ 4 | import { useAuth } from '../../hooks/useAuth';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Parameter 'accept' is declared but never used. Unused parameters should start with a '_'.
+    ,-[src/components/chat/AttachmentMenu.jsx:40:54]
+ 39 |       <div className="grid grid-cols-4 gap-3">
+ 40 |         {attachments.map(({ type, icon: Icon, label, accept }) => (
+    :                                                      ^^^|^^
+    :                                                         `-- 'accept' is declared here
+ 41 |           <button
+    `----
+  help: Consider removing this parameter.
+
+  x react-hooks(rules-of-hooks): React Hook "useRef" is called conditionally. React Hooks must be called in the exact same order in every component render.
+   ,-[src/components/chat/AttachmentMenu.jsx:7:24]
+ 6 | 
+ 7 |   const fileInputRef = useRef(null);
+   :                        ^^^^^^|^^^^^
+   :                              `-- This Hook call is not reachable on every render path.
+ 8 |   const [selectedType, setSelectedType] = React.useState('');
+   `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  x react-hooks(rules-of-hooks): React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render.
+   ,-[src/components/chat/AttachmentMenu.jsx:8:43]
+ 7 |   const fileInputRef = useRef(null);
+ 8 |   const [selectedType, setSelectedType] = React.useState('');
+   :                                           ^^^^^^^^^|^^^^^^^^
+   :                                                    `-- This Hook call is not reachable on every render path.
+ 9 | 
+   `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  ! eslint(no-unused-vars): Variable 'location' is declared but never used. Unused variables should start with a '_'.
+   ,-[src/pages/Dashboard.jsx:8:9]
+ 7 | const Dashboard = () => {
+ 8 |   const location = useLocation();
+   :         ^^^^|^^^
+   :             `-- 'location' is declared here
+ 9 |   const navigate = useNavigate();
+   `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'navigate' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/Dashboard.jsx:9:9]
+  8 |   const location = useLocation();
+  9 |   const navigate = useNavigate();
+    :         ^^^^|^^^
+    :             `-- 'navigate' is declared here
+ 10 |   const isMobile = window.innerWidth < 768;
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Parameter 'chatId' is declared but never used. Unused parameters should start with a '_'.
+    ,-[src/components/chat/MessageInput.jsx:14:3]
+ 13 |   replyTo = null,
+ 14 |   chatId = null,
+    :   ^^^|^^
+    :      `-- 'chatId' is declared here
+ 15 |   onClearReply = null,
+    `----
+  help: Consider removing this parameter.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+   ,-[src/context/SocketContext.jsx:7:14]
+ 6 | 
+ 7 | export const useSocket = () => {
+   :              ^^^^^^^^^
+ 8 |   const context = useContext(SocketContext);
+   `----
+
+  ! eslint(no-unused-vars): Variable 'navigate' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/ChatsPage.jsx:15:9]
+ 14 | const ChatsPage = () => {
+ 15 |   const navigate = useNavigate();
+    :         ^^^^|^^^
+    :             `-- 'navigate' is declared here
+ 16 |   const { user } = useAuth();
+    `----
+  help: Consider removing this declaration.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'stopCamera', and 'startCamera'
+    ,-[src/components/camera/CameraModal.jsx:22:6]
+ 15 |     if (isOpen) {
+ 16 |       startCamera();
+    :       ^^^^^^^^^^^
+ 17 |     } else {
+ 18 |       stopCamera();
+    :       ^^^^^^^^^^
+ 19 |       setCapturedImage(null);
+ 20 |     }
+ 21 |     return () => stopCamera();
+ 22 |   }, [isOpen, facingMode]);
+    :      ^^^^^^^^^^^^^^^^^^^^
+ 23 | 
+    `----
+  help: Either include it or remove the dependency array.
+
+Found 52 warnings and 3 errors.
+Finished in 100ms on 62 files with 91 rules using 18 threads.
