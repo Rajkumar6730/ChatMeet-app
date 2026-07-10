@@ -29,4 +29,12 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      external: [], // Make sure this is empty or doesn't include 'react-icons'
+    }
+  },
+  optimizeDeps: {
+    include: ['react-icons/fi'] // Add this to pre-bundle the dependency
+  }
 })
