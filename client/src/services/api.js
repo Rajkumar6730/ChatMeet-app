@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const fallbackUrl = import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://chatmeet-app.onrender.com/api';
-const RAW_API_URL = import.meta.env.VITE_API_URL || fallbackUrl;
-const API_URL = RAW_API_URL.endsWith('/api') ? RAW_API_URL : `${RAW_API_URL}/api`;
+// Vite replaces import.meta.env variables during build based on .env files
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const api = axios.create({
   baseURL: API_URL,
