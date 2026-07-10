@@ -80,7 +80,8 @@ app.use(helmet({
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://chatting-meet-app.vercel.app'
+    'https://chatting-meet-app.vercel.app',
+    /^https:\/\/.*\.vercel\.app$/
 ];
 if (process.env.CLIENT_URL && !allowedOrigins.includes(process.env.CLIENT_URL)) {
     allowedOrigins.push(process.env.CLIENT_URL);
