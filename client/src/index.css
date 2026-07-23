@@ -1,7 +1,7 @@
 /* client/src/index.css */
 
 /* Font Import - MUST BE FIRST */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
 
 /* Tailwind Directives */
 @tailwind base;
@@ -15,14 +15,43 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+
+  :root {
+    --app-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
   body {
     background-color: #0B141A;
     color: #E9EDEF;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--app-font);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
+    @apply text-body;
+  }
+
+  h1 {
+    font-family: var(--app-font) !important;
+    @apply text-main-heading;
+  }
+
+  h2 {
+    font-family: var(--app-font) !important;
+    @apply text-section-heading;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--app-font) !important;
+    @apply text-sub-heading;
+  }
+
+  button,
+  .btn {
+    font-family: var(--app-font) !important;
+    font-weight: 600 !important;
   }
 
   /* Custom Scrollbar */
@@ -66,12 +95,14 @@
 
 /* Utilities Layer */
 @layer utilities {
+
   /* Animations */
   @keyframes slideDown {
     from {
       transform: translateY(-100%);
       opacity: 0;
     }
+
     to {
       transform: translateY(0);
       opacity: 1;
@@ -83,6 +114,7 @@
       transform: translateY(100%);
       opacity: 0;
     }
+
     to {
       transform: translateY(0);
       opacity: 1;
@@ -94,6 +126,7 @@
       transform: scale(0.95);
       opacity: 0;
     }
+
     to {
       transform: scale(1);
       opacity: 1;
@@ -104,15 +137,19 @@
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
   }
 
   @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.5;
     }
@@ -122,25 +159,33 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
   }
 
   @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(-6px);
     }
   }
 
   @keyframes typingDot {
-    0%, 80%, 100% {
+
+    0%,
+    80%,
+    100% {
       transform: scale(0);
       opacity: 0.4;
     }
+
     40% {
       transform: scale(1);
       opacity: 1;
@@ -151,6 +196,7 @@
     0% {
       background-position: -200% 0;
     }
+
     100% {
       background-position: 200% 0;
     }
@@ -160,9 +206,11 @@
     0% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.2);
     }
+
     100% {
       transform: scale(1);
     }
@@ -173,6 +221,7 @@
       transform: translateX(100%);
       opacity: 0;
     }
+
     to {
       transform: translateX(0);
       opacity: 1;
@@ -184,6 +233,7 @@
       transform: translateX(-100%);
       opacity: 0;
     }
+
     to {
       transform: translateX(0);
       opacity: 1;
@@ -436,7 +486,7 @@
   .chat-messages {
     padding: 12px;
   }
-  
+
   .message-bubble {
     max-width: 90% !important;
   }

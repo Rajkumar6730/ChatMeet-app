@@ -23,7 +23,7 @@ import ConfirmationModal from '../common/ConfirmationModal';
 import { FiArrowLeft, FiPhone, FiVideo, FiX } from 'react-icons/fi';
 
 const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
-  const { user, updateTheme: updateUserTheme } = useAuth();
+  const { user, theme, updateTheme: updateUserTheme } = useAuth();
   const navigate = useNavigate();
   const { isConnected, emit, on, off } = useSocket();
 
@@ -81,14 +81,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
     mutual: false
   });
 
-  // ---- Theme ----
-  const [theme, setTheme] = useState(user?.theme || {
-    mode: 'dark',
-    wallpaper: null,
-    wallpaperType: 'solid',
-    accentColor: '#25D366',
-    bubbleColor: '#005C4B'
-  });
+
 
   // ---- Modal state ----
   const [modalState, setModalState] = useState({
@@ -210,20 +203,13 @@ const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
     // ---- Theme sync listeners ----
     const handleThemeUpdated = (data) => {
       if (data.userId === user?._id) {
-        setTheme(data.theme);
         updateUserTheme(data.theme);
       }
     };
 
     const handleWallpaperUpdated = (data) => {
       if (data.userId === user?._id) {
-        setTheme(prev => ({
-          ...prev,
-          wallpaper: data.wallpaper,
-          wallpaperType: 'image'
-        }));
         updateUserTheme({
-          ...theme,
           wallpaper: data.wallpaper,
           wallpaperType: 'image'
         });
@@ -543,7 +529,6 @@ const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
   const handleThemeSave = async (newTheme) => {
     try {
       await chatService.updateTheme(newTheme);
-      setTheme(newTheme);
       updateUserTheme(newTheme);
     } catch (err) {
       console.error('Save theme error:', err);
@@ -575,18 +560,46 @@ const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
     return '#0B141A';
   };
 
+  const renderChatBackground = () => {
+    if (!theme.wallpaper) return { backgroundColor: getBackgroundColor() }; 
+    if (theme.wallpaperType === 'solid') return { backgroundColor: theme.wallpaper };
+    if (theme.wallpaperType === 'gradient') return { backgroundImage: theme.wallpaper };
+    return { backgroundImage: `url(${theme.wallpaper})` };
+  };
+
   return (
     <div
-      className="flex flex-col h-full w-full"
-      style={{
-        backgroundColor: getBackgroundColor(),
-        backgroundImage: theme.wallpaper ? `url(${theme.wallpaper})` : 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative flex flex-col h-full w-full overflow-hidden"
+      style={{ backgroundColor: getBackgroundColor() }}
     >
-      {/* ---- Header ---- */}
-      <div className="bg-header-bg border-b border-border-color px-4 py-3 flex items-center justify-between flex-shrink-0">
+      {/* Background Wallpaper Layer */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 transition-all duration-500 ease-in-out"
+        style={{
+          ...renderChatBackground(),
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: `blur(${theme.wallpaperBlur || 0}px) brightness(${theme.wallpaperBrightness ?? 100}%)`,
+          opacity: theme.wallpaper ? 1 : 0
+        }}
+      />
+      
+      {/* Overlay Layer */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 transition-all duration-500 ease-in-out"
+        style={{
+          backgroundColor: 
+            theme.wallpaperOpacity === 'light' ? 'rgba(0,0,0,0.35)' : 
+            theme.wallpaperOpacity === 'medium' ? 'rgba(0,0,0,0.5)' : 
+            theme.wallpaperOpacity === 'dark' ? 'rgba(0,0,0,0.8)' : 'transparent'
+        }}
+      />
+
+      {/* Content Layer */}
+      <div className="relative z-10 flex flex-col h-full w-full">
+        {/* ---- Header ---- */}
+        <div className="bg-header-bg border-b border-border-color px-4 py-3 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
@@ -836,12 +849,14 @@ const ChatWindow = ({ chat, onBack, onChatUpdate }) => {
             title: '',
             message: '',
             onConfirm: null,
+            confirmVariant: 'danger',
           })
         }
         onConfirm={modalState.onConfirm}
         title={modalState.title}
         message={modalState.message}
       />
+      </div>
     </div>
   );
 };

@@ -27,7 +27,9 @@ const MessageBubble = ({
 }) => {
   const [showDeleteOptions, setShowDeleteOptions] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
   const [swipeOffset, setSwipeOffset] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
   const [isLongPress, setIsLongPress] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null); // NEW: For image preview
   const longPressTimer = useRef(null);
@@ -35,8 +37,10 @@ const MessageBubble = ({
   // ---- Long press for selection (UPDATED) ----
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
     setSwipeOffset(0);
     setIsLongPress(false);
+    setIsSwiping(false);
     
     longPressTimer.current = setTimeout(() => {
       setIsLongPress(true);
@@ -47,10 +51,21 @@ const MessageBubble = ({
   };
 
   const handleTouchMove = (e) => {
-    const delta = e.touches[0].clientX - touchStartX;
-    if (delta > 0 && delta < 80) {
-      setSwipeOffset(delta);
-      e.preventDefault();
+    if (!touchStartX) return;
+    const deltaX = e.touches[0].clientX - touchStartX;
+    const deltaY = e.touches[0].clientY - touchStartY;
+    
+    // Prevent horizontal swipe if the user is primarily scrolling vertically
+    if (Math.abs(deltaY) > Math.abs(deltaX) && swipeOffset === 0) {
+      return;
+    }
+
+    if (deltaX > 0 && deltaX < 80) {
+      setIsSwiping(true);
+      setSwipeOffset(deltaX);
+      if (e.cancelable && Math.abs(deltaX) > Math.abs(deltaY)) {
+        e.preventDefault();
+      }
     }
     if (longPressTimer.current) {
       clearTimeout(longPressTimer.current);
@@ -69,7 +84,9 @@ const MessageBubble = ({
     
     setSwipeOffset(0);
     setTouchStartX(0);
+    setTouchStartY(0);
     setIsLongPress(false);
+    setIsSwiping(false);
   };
 
   // ---- Right click (NEW FEATURE) ----
@@ -313,36 +330,39 @@ const MessageBubble = ({
   };
 
   // ---- Image preview modal (NEW FEATURE) ----
-  if (selectedImage) {
-    return (
-      <div 
-        className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
-        onClick={() => setSelectedImage(null)}
-      >
-        <div className="relative max-w-4xl max-h-screen">
-          <img 
-            src={selectedImage} 
-            alt="Preview" 
-            className="max-w-full max-h-screen object-contain"
-          />
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition"
-          >
-            <FiX size={24} />
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // Don't return early here, so the message bubble still renders underneath the modal
 
   return (
     <>
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[100] p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-screen" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={selectedImage} 
+              alt="Preview" 
+              className="max-w-full max-h-screen object-contain animate-scaleIn"
+            />
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition"
+            >
+              <FiX size={24} />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div
         className={`flex ${isOwn ? 'justify-end' : 'justify-start'} items-end gap-2 group relative select-none ${
           isSelectionMode ? 'cursor-pointer' : ''
         }`}
-        style={{ transform: `translateX(${swipeOffset}px)`, transition: 'transform 0.1s' }}
+        style={{ 
+          transform: `translateX(${swipeOffset}px)`, 
+          transition: isSwiping ? 'none' : 'transform 0.2s ease-out' 
+        }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -427,7 +447,7 @@ const MessageBubble = ({
                 </span>
               )}
               
-              <span className="text-xs opacity-70">{messageTime}</span>
+              <span className="text-xs font-medium font-inter opacity-70">{messageTime}</span>
               {getStatusIcon()}
             </div>
           </div>
@@ -502,4 +522,11 @@ const MessageBubble = ({
   );
 };
 
-export default MessageBubble;
+export default React.memo(MessageBubble, (prevProps, nextProps) => {
+  return (
+    prevProps.message === nextProps.message &&
+    prevProps.isSelected === nextProps.isSelected &&
+    prevProps.isSelectionMode === nextProps.isSelectionMode &&
+    prevProps.isOwn === nextProps.isOwn
+  );
+});

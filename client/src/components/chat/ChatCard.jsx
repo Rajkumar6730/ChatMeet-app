@@ -88,7 +88,7 @@ const ChatCard = ({
             {participant?.username || 'Unknown User'}
             {isFavorited && <span className="text-yellow-500">★</span>}
           </h3>
-          <span className="text-text-secondary text-xs flex-shrink-0">{getTimeAgo()}</span>
+          <span className="text-text-secondary text-xs font-medium flex-shrink-0 font-inter">{getTimeAgo()}</span>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-text-secondary text-sm truncate flex-1">

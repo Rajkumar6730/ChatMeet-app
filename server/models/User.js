@@ -135,6 +135,23 @@ const userSchema = new mongoose.Schema({
             enum: ['solid', 'gradient', 'image'],
             default: 'solid'
         },
+        wallpaperBlur: {
+            type: Number,
+            default: 0,
+            min: 0,
+            max: 20
+        },
+        wallpaperBrightness: {
+            type: Number,
+            default: 100,
+            min: 0,
+            max: 100
+        },
+        wallpaperOpacity: {
+            type: String,
+            enum: ['none', 'light', 'medium', 'dark'],
+            default: 'none'
+        },
         accentColor: {
             type: String,
             default: '#25D366'

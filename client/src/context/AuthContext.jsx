@@ -18,14 +18,47 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // ---- Theme state (NEW FEATURE) ----
-  const [theme, setTheme] = useState({
-    mode: 'dark',
-    wallpaper: null,
-    wallpaperType: 'solid',
-    accentColor: '#25D366',
-    bubbleColor: '#005C4B'
+  const [theme, setTheme] = useState(() => {
+    const defaultTheme = {
+      mode: 'dark',
+      wallpaper: null,
+      wallpaperType: 'solid',
+      accentColor: '#25D366',
+      bubbleColor: '#005C4B',
+      fontFamily: 'Inter'
+    };
+    try {
+      const savedTheme = localStorage.getItem('userTheme');
+      if (savedTheme) {
+        return { ...defaultTheme, ...JSON.parse(savedTheme) };
+      }
+    } catch (e) {
+      console.error('Error parsing saved theme:', e);
+    }
+    return defaultTheme;
   });
+
+  // ---- Dynamically load and apply global font ----
+  useEffect(() => {
+    const applyFont = (font) => {
+      if (!font) return;
+      
+      // Load Google Font if not already loaded
+      const fontId = `font-${font.replace(/\s+/g, '-').toLowerCase()}`;
+      if (!document.getElementById(fontId)) {
+        const link = document.createElement('link');
+        link.id = fontId;
+        link.rel = 'stylesheet';
+        link.href = `https://fonts.googleapis.com/css2?family=${font.replace(/\s+/g, '+')}:wght@400;500;600;700&display=swap`;
+        document.head.appendChild(link);
+      }
+      
+      // Apply CSS variable
+      document.documentElement.style.setProperty('--app-font', `"${font}", sans-serif`);
+    };
+
+    applyFont(theme.fontFamily || 'Inter');
+  }, [theme.fontFamily]);
 
   // ---- Initialize auth and theme on mount ----
   useEffect(() => {
@@ -146,7 +179,8 @@ export const AuthProvider = ({ children }) => {
         wallpaper: null,
         wallpaperType: 'solid',
         accentColor: '#25D366',
-        bubbleColor: '#005C4B'
+        bubbleColor: '#005C4B',
+        fontFamily: 'Inter'
       });
     }
   };
@@ -228,7 +262,8 @@ export const AuthProvider = ({ children }) => {
       wallpaper: null,
       wallpaperType: 'solid',
       accentColor: '#25D366',
-      bubbleColor: '#005C4B'
+      bubbleColor: '#005C4B',
+      fontFamily: 'Inter'
     };
     updateTheme(defaultTheme);
   };

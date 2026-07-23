@@ -42,12 +42,17 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
 
   // ---- Wallpapers (UPDATED) ----
   const wallpapers = [
-    { id: 'default', url: '/wallpapers/default.jpg', label: 'Default' },
-    { id: 'light', url: '/wallpapers/light.jpg', label: 'Light' },
-    { id: 'night', url: '/wallpapers/night.jpg', label: 'Night' },
-    { id: 'forest', url: '/wallpapers/forest.jpg', label: 'Forest' },
-    { id: 'ocean', url: '/wallpapers/ocean.jpg', label: 'Ocean' },
-    { id: 'mountain', url: '/wallpapers/mountain.jpg', label: 'Mountain' },
+    { id: 'nature', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000', label: 'Nature', type: 'image' },
+    { id: 'mountains', url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000', label: 'Mountains', type: 'image' },
+    { id: 'ocean', url: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1000', label: 'Ocean', type: 'image' },
+    { id: 'minimal', url: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=1000', label: 'Minimal', type: 'image' },
+    { id: 'glass', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000', label: 'Glass', type: 'image' },
+    { id: 'blur', url: 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=1000', label: 'Blur', type: 'image' },
+    { id: 'abstract', url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000', label: 'Abstract', type: 'image' },
+    { id: 'modern', url: 'https://images.unsplash.com/photo-1557683311-eac922347aa1?q=80&w=1000', label: 'Modern', type: 'image' },
+    { id: 'purple-grad', url: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', label: 'Purple', type: 'gradient' },
+    { id: 'blue-grad', url: 'linear-gradient(135deg, #2af598 0%, #009efd 100%)', label: 'Blue Gradient', type: 'gradient' },
+    { id: 'dark-grad', url: 'linear-gradient(to right, #434343 0%, black 100%)', label: 'Dark Gradient', type: 'gradient' },
   ];
 
   // ---- Handle mode select (NEW FEATURE) ----
@@ -66,12 +71,15 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
 
   // ---- Handle wallpaper select (NEW FEATURE) ----
   const handleWallpaperSelect = (wallpaper) => {
-    setTheme(prev => ({ 
-      ...prev, 
+    const newTheme = {
+      ...theme, 
       wallpaper: wallpaper.url,
-      wallpaperType: 'image',
-      wallpaperLabel: wallpaper.label
-    }));
+      wallpaperType: wallpaper.type || 'image',
+      wallpaperLabel: wallpaper.label,
+      wallpaperOpacity: (wallpaper.type === 'image' || !wallpaper.type) ? 'light' : theme.wallpaperOpacity
+    };
+    setTheme(newTheme);
+    if (updateTheme) updateTheme(newTheme);
     setPreviewImage(null);
   };
 
@@ -126,12 +134,15 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
       if (data.success) {
         setUploadProgress(100);
         setTimeout(() => {
-          setTheme(prev => ({ 
-            ...prev, 
+          const newTheme = {
+            ...theme, 
             wallpaper: data.data.url,
             wallpaperType: 'image',
-            wallpaperLabel: file.name
-          }));
+            wallpaperLabel: file.name,
+            wallpaperOpacity: 'light'
+          };
+          setTheme(newTheme);
+          if (updateTheme) updateTheme(newTheme);
           setPreviewImage(null);
           setUploadProgress(0);
         }, 500);
@@ -150,12 +161,15 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
 
   // ---- Handle remove wallpaper (NEW FEATURE) ----
   const handleRemoveWallpaper = () => {
-    setTheme(prev => ({ 
-      ...prev, 
+    const newTheme = {
+      ...theme, 
       wallpaper: null,
       wallpaperType: 'solid',
-      wallpaperLabel: null
-    }));
+      wallpaperLabel: null,
+      wallpaperOpacity: 'none'
+    };
+    setTheme(newTheme);
+    if (updateTheme) updateTheme(newTheme);
     setPreviewImage(null);
     setUploadProgress(0);
   };
@@ -186,9 +200,11 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
       wallpaper: null,
       wallpaperType: 'solid',
       accentColor: '#25D366',
-      bubbleColor: '#005C4B'
+      bubbleColor: '#005C4B',
+      wallpaperOpacity: 'none'
     };
     setTheme(defaultTheme);
+    if (updateTheme) updateTheme(defaultTheme);
   };
 
   return (
@@ -290,7 +306,7 @@ const ThemeSelector = ({ isOpen, currentTheme, onSave, onClose }) => {
                       : 'border-border-color hover:border-primary'
                   }`}
                   style={{ 
-                    backgroundImage: `url(${wp.url})`, 
+                    backgroundImage: wp.type === 'gradient' ? wp.url : `url(${wp.url})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

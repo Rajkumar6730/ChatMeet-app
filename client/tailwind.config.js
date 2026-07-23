@@ -48,7 +48,21 @@ export default {
         '64': '64px',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['var(--app-font)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        outfit: ['Outfit', 'sans-serif'],
+        sora: ['Sora', 'sans-serif'],
+        opensans: ['"Open Sans"', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
+      },
+      fontSize: {
+        'main-heading': ['32px', { lineHeight: '40px', fontWeight: '700' }],
+        'section-heading': ['24px', { lineHeight: '32px', fontWeight: '600' }],
+        'sub-heading': ['18px', { lineHeight: '28px', fontWeight: '500' }],
+        'body': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'chat-preview': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'caption': ['13px', { lineHeight: '18px', fontWeight: '400' }],
+        'time': ['12px', { lineHeight: '16px', fontWeight: '400' }],
       },
       animation: {
         'typing': 'typing 1s infinite',
@@ -59,6 +73,7 @@ export default {
         'fadeIn': 'fadeIn 0.2s ease-out',
         'spin': 'spin 1s linear infinite',
         'pulse': 'pulse 1.5s ease-in-out infinite',
+        'shimmer': 'shimmer 1.5s infinite',
       },
       keyframes: {
         typing: {
@@ -93,12 +108,17 @@ export default {
         bounce: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' }
+        },
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' }
         }
       },
       boxShadow: {
-        'card': '0 2px 8px rgba(0, 0, 0, 0.3)',
-        'dropdown': '0 4px 12px rgba(0, 0, 0, 0.5)',
-        'modal': '0 8px 24px rgba(0, 0, 0, 0.6)',
+        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
+        'dropdown': '0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+        'modal': '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)',
       },
       backdropBlur: {
         'sm': '4px',

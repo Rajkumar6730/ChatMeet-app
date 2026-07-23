@@ -660,6 +660,7 @@ exports.updateTheme = async (req, res) => {
         });
     } catch (error) {
         console.error('Update theme error:', error);
+        require('fs').appendFileSync('theme_error.log', new Date().toISOString() + ' Update theme error: ' + (error.stack || error) + '\n');
         res.status(500).json({
             success: false,
             message: 'Server error updating theme'
